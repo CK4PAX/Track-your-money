@@ -1,0 +1,16 @@
+{% extends 'GEFs/base.html'%}
+  {% load django_bootstrap5 %}
+  {% bootstrap_css %}
+  {% bootstrap_javascript %}
+  {% block content %}
+	<div class="d-flex justify-content-center">
+    <div class="w-50">
+			<h1>Modificar cuenta</h1>
+			<form action="{% url 'GEFs:modificar_cuenta' cuenta.id_cuenta %}" method="POST">
+				{% csrf_token%}
+				{% bootstrap_form form %}
+				<button type="submit" class="btn btn-primary">Modificar</button>
+			</form>
+		</div>
+	</div>
+	{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'GEFs/base.html'%}
+
+{% block content%}
+	{% for cuenta in cuentas%}
+	<div class="card mb-3">
+        <h4 class="card-header">
+        	<a href="{%url 'GEFs:cuenta_registro' cuenta.id_cuenta%}">{{cuenta}}</a> 
+        	<small><a href="{%url 'GEFs:modificar_cuenta' cuenta.id_cuenta %}">Editar</a></small>
+			<small><a href="{%url 'GEFs:eliminar_cuenta' cuenta.id_cuenta %}">Eliminar</a></small></small>
+        </h4>
+        <div class="card-body"> S/. {{cuenta.balance}}</b></div>
+    </div>
+	{% if forloop.last %}
+	<li class="list-group-item">
+		<a href="{%url 'GEFs:nueva_cuenta' cuenta.id_usuario.id_usuario %}">Nueva cuenta</a>
+	</li>
+	{%endif%}
+	{%empty%}
+	<li class="list-group-item">Ninguna cuenta fue agregada.</li>
+	{% endfor%}
+</ul>
+{%endblock content%}

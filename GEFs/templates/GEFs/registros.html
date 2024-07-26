@@ -1,0 +1,22 @@
+{%extends 'GEFs/base.html'%}
+
+{%block content%}
+  {%for registro in registros%}
+      <div class="card mb-3">
+        <h4 class="card-header">{{registro.fecha|date:'M d, Y'}}
+          <small>
+              {{registro.hora|time:"H:i:s"}}
+              <a href="{%url 'GEFs:eliminar_registro' registro.id_registro%}">Eliminar</a>
+          </small>
+        </h4>
+        {%if registro.id_movimiento.id_movimiento == 1 %}
+            <div class="card-body">{{registro.id_actividad.tipo_actividad}}, {{registro.id_subactividad.tipo_subactividad}} <b>-{{registro.importe}}</b></div>
+        {%else%}
+            <div class="card-body">{{registro.id_actividad.tipo_actividad}}, {{registro.id_subactividad.tipo_subactividad}} <b>+{{registro.importe}}</b></div>
+        {%endif%}
+      </div>
+    {%empty%}
+      <li class="list-group-item">Ningun registro realizado</li>
+  {%endfor%}
+{%endblock content%}
+
